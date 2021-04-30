@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schema</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+{% block content %}
+
+<h2>Insert Row</h2>
+<form action="" method="post">
+    <fieldset>
+    {% for i in range(table_len) %}
+        {{ form.hidden_tag() }}
+        {{ headers[i] }} {{ '|' }} {{ types[i] }}
+        <br/>
+        {{ form[headers[i]] }}
+        <br/>
+    {% endfor %}
+    <p>{{form.submit()}}</p>
+    </fieldset>
+</form>
+
+{% endblock %}
+</html>

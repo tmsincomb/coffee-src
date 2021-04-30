@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schema</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<a href="/">&#8592; BACK HOME</a><br></br>
+<h1>Schema</h1>
+<div>
+    <nav>
+        {% for table in tables %}
+            <h2>{{tablenames[loop.index]}}<h2>
+            {{ table|safe }}
+        {% endfor %}
+    </nav>
+</div>
+</body>
+<footer></footer>
+</html>

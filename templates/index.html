@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Schema</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+</head>
+<body>
+<!-- <img src="/static/map.png" height="auto" width="100%"> -->
+<img src="{{url_for('static', filename='map.png')}}" height="auto" width="100%"/>
+<div class="schema">
+    <a href="/schema"><h1>SCHEMA</h1></a>
+</div>
+<br></br>
+{% block content %}
+    <h1>INSERT</h1>
+    <form id="insert" action="/" method="POST">
+        <select name="insert" method="POST" action="/">
+            {% for tablename in tablenames %}
+                <option value= "{{tablename}}" SELECTED>{{tablename}}</option>"
+            {% endfor %}
+            <input type="submit" value="Submit">
+        </select>
+    </form>
+    <h1>UPDATE</h1>
+    <form id="form-update" action="/" method="POST">
+        <input type="text" id="input-update" name="update" list="update">
+            <datalist id="update">
+                {% for row in rows %}
+                    <option value={{row.split(",", 1)[0]}}>{{row}}</option>
+                {% endfor %}
+            </datalist>
+        <input type="submit">
+    </form>
+    <h1>DELETE</h1>
+    <form id="form-delete" action="/" method="POST">
+        <input type="text" id="input-delete" name="delete" list="delete">
+            <datalist id="delete">
+                {% for row in rows %}
+                    <option value={{row.split(",", 1)[0]}}>{{row}}</option>
+                {% endfor %}
+            </datalist>
+        <input type="submit">
+    </form>
+{% endblock %}
+<div class="form">
+    <h1>CUSTOM QUERY</h1>
+    <form action="/" method="POST">
+        <input type="text" name="query" style="width: 500px;" /></br>
+        <input type="submit" value="RUN SQL QUERY" />
+    </form>
+</div>
+<div class="form">
+    <h1>CUSTOM MODIFICATION</h1>
+    <form action="/" method="POST">
+        <input type="text" name="command" style="width: 500px;" /></br>
+        <input type="submit" value="RUN SQL COMMAND" />
+    </form>
+</div>
+</body>
+<footer></footer>
+</html>
